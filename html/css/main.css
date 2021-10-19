@@ -2,7 +2,7 @@
 
 h1 {
     font-weight: normal;
-    color: white;
+    color: rgb(255 0 255 / 1)fb;
 }
 
 div.info {
@@ -10,7 +10,7 @@ div.info {
 }
 
 div.info * {
-    color: white;
+    color: rgb(255 0 255 / 1);
 }
 
 #icons {
@@ -24,7 +24,7 @@ div.info * {
 }
 
 #vehicle {
-    fill: white;
+    fill: rgb(255 0 255 / 1);
 }
 
 
@@ -62,7 +62,7 @@ svg.menu.outer {
 }
 
 svg.menu > g > path {
-    fill: rgb(23 23 23 / 80%);
+    fill: #f8f9fa;
 }
 
 svg.menu > g.sector > path {
@@ -77,21 +77,21 @@ svg.menu > g.sector > use {
     letter-spacing: 0.2px;
     text-transform: uppercase;
     cursor: pointer;
-    fill: white;
+    fill: #f8f9fafa55 0 255 / 1);
 }
 
 svg.menu > g.sector:hover > path {
-    fill: #dc143c;
+    fill: rgb(255 0 255 / 1);
 
 }
 
 svg.menu > g.center:hover > circle {
-    fill:#dc143c;
+    fill:rgb(255 0 255 / 1);
 }
 
 svg.menu > g.center > circle {
     cursor: pointer;
-    fill: rgb(23 23 23 / 80%);
+    fill: #f8f9fa;
 }
 
 svg.menu > g.center > text,
