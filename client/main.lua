@@ -1,8 +1,12 @@
 local inRadialMenu = false
 
 RegisterCommand('radialmenu', function()
-    openRadial(true)
-    SetCursorLocation(0.5, 0.5)
+	QBCore.Functions.GetPlayerData(function(PlayerData)
+        if not PlayerData.metadata["isdead"] and not PlayerData.metadata["inlaststand"] and not PlayerData.metadata["ishandcuffed"] and not IsPauseMenuActive() then
+			openRadial(true)
+			SetCursorLocation(0.5, 0.5)
+		end
+	end)
 end)
 
 RegisterKeyMapping('radialmenu', 'Open Radial Menu', 'keyboard', 'F1')
@@ -220,27 +224,16 @@ AddEventHandler('qb-radialmenu:client:setExtra', function(data)
     local extra = tonumber(replace)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped)
-    local enginehealth = 1000.0
-    local bodydamage = 1000.0
-
     if veh ~= nil then
         local plate = GetVehicleNumberPlateText(closestVehicle)
-    
         if GetPedInVehicleSeat(veh, -1) == PlayerPedId() then
+            SetVehicleAutoRepairDisabled(veh, true) -- Forces Auto Repair off when Toggling Extra [GTA 5 Niche Issue]
             if DoesExtraExist(veh, extra) then 
                 if IsVehicleExtraTurnedOn(veh, extra) then
-                    enginehealth = GetVehicleEngineHealth(veh)
-                    bodydamage = GetVehicleBodyHealth(veh)
                     SetVehicleExtra(veh, extra, 1)
-                    SetVehicleEngineHealth(veh, enginehealth)
-                    SetVehicleBodyHealth(veh, bodydamage)
                     QBCore.Functions.Notify('Extra ' .. extra .. ' Deactivated', 'error', 2500)
                 else
-                    enginehealth = GetVehicleEngineHealth(veh)
-                    bodydamage = GetVehicleBodyHealth(veh)
                     SetVehicleExtra(veh, extra, 0)
-                    SetVehicleEngineHealth(veh, enginehealth)
-                    SetVehicleBodyHealth(veh, bodydamage)
                     QBCore.Functions.Notify('Extra ' .. extra .. ' Activated', 'success', 2500)
                 end    
             else
